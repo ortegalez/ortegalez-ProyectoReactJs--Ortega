@@ -1,0 +1,25 @@
+.listContainer {
+    display: flex;
+    flex-direction: row;
+    justify-Content: center;
+    flex-Wrap: wrap;
+  }
+
+.greeting {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 75vh;
+}
+
+.cargando {
+    height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h3, h4 {
+    text-align: center;
+}

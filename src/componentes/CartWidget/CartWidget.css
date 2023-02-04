@@ -1,0 +1,17 @@
+.carrito {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    color: #ffffff;
+}
+
+.carrito img {
+    width: 1.5rem;
+}
+
+.carrito p {
+    font-weight: bold;
+    font-size: 1rem;
+}
