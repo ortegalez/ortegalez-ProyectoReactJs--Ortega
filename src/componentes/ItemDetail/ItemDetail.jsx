@@ -10,7 +10,6 @@ const ItemDetail = ({ productos }) => {
     agregarCarrito({ ...productos, cantidad: cant });
   };
 
-  console.log(cartList);
   return (
     <div className="mt-2 d-flex justify-content-center ">
       <div className="card w-75 d-flex flex-row ">

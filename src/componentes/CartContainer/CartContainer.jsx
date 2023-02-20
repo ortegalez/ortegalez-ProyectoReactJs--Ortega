@@ -15,8 +15,10 @@ const CartContainer = () => {
             <li>Precio: ${producto.precio}</li>
             <li>Sub Total: ${producto.precio * producto.cantidad}</li>
           </ul>
+          <button className="btn btn-outline-danger">Quitar producto</button>
         </div>
       ))}
+
       <h4>
         Total: $
         {cartList.reduce(
