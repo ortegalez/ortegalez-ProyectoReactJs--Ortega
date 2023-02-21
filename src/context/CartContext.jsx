@@ -41,14 +41,25 @@ export const CartContextProvider = ({ children }) => {
       item.id === id ? { ...item, cantidad: item.cantidad - 1 } : item
     );
 
-    const cantidadCero = newCart.some((item) => item.cantidad === 0);
-
-    if (cantidadCero) {
-      eliminarProducto(id);
-    } else {
-      setCartList(newCart);
-    }
+    const checkedCart = newCart.filter((item) =>
+      item.cantd === 0 ? null : item
+    );
+    setCartList(checkedCart);
   };
+
+  // const restarCantidad = (id) => {
+  //   const newCart = cartList.map((item) =>
+  //     item.id === id ? { ...item, cantidad: item.cantidad - 1 } : item
+  //   );
+
+  //   const cantidadCero = newCart.some((item) => item.cantidad === 0);
+
+  //   if (cantidadCero) {
+  //     eliminarProducto(id);
+  //   } else {
+  //     setCartList(newCart);
+  //   }
+  // };
 
   const precioTotal = () => {
     cartList.reduce(
