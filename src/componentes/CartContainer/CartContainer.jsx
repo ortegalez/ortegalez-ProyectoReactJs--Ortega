@@ -2,7 +2,7 @@ import React from "react";
 import { useCartContext } from "../../context/CartContext";
 
 const CartContainer = () => {
-  const { cartList, vaciarCarrito } = useCartContext();
+  const { cartList, vaciarCarrito, eliminarProducto } = useCartContext();
 
   return (
     <div>
@@ -15,7 +15,19 @@ const CartContainer = () => {
             <li>Precio: ${producto.precio}</li>
             <li>Sub Total: ${producto.precio * producto.cantidad}</li>
           </ul>
-          <button className="btn btn-outline-danger">Quitar producto</button>
+          <div>
+            <button className="btn btn-outline-primary">+</button>
+            <center>
+              <label>Cantidad: {producto.cantidad}</label>
+            </center>
+            <button className="btn btn-outline-primary">+</button>
+          </div>
+          <button
+            className="btn btn-outline-danger"
+            onClick={() => eliminarProducto(producto.id)}
+          >
+            Quitar producto
+          </button>
         </div>
       ))}
 
