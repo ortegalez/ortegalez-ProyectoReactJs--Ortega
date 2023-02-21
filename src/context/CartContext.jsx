@@ -36,13 +36,16 @@ export const CartContextProvider = ({ children }) => {
     setCartList(newCart);
   };
 
+  // map devuelve un array igual o mayor al original
+  // filter devuelve un array igual o menor al original
+
   const restarCantidad = (id) => {
     const newCart = cartList.map((item) =>
       item.id === id ? { ...item, cantidad: item.cantidad - 1 } : item
     );
-
+    // En este caso, al ya tener un elemento con cantidad cero, el null sirve para "eliminar" al item
     const checkedCart = newCart.filter((item) =>
-      item.cantd === 0 ? null : item
+      item.cantidad === 0 ? null : item
     );
     setCartList(checkedCart);
   };
