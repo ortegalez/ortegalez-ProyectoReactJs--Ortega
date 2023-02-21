@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const ItemCount = ({ initial = 1, stock = 10, onAdd }) => {
   const [count, setCount] = useState(initial);
-  console.log(count);
+
   const handleSuma = () => {
     if (count < stock) {
       setCount(count + 1);

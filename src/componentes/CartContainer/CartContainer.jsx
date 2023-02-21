@@ -2,7 +2,13 @@ import React from "react";
 import { useCartContext } from "../../context/CartContext";
 
 const CartContainer = () => {
-  const { cartList, vaciarCarrito, eliminarProducto } = useCartContext();
+  const {
+    cartList,
+    vaciarCarrito,
+    eliminarProducto,
+    sumarCantidad,
+    restarCantidad,
+  } = useCartContext();
 
   return (
     <div>
@@ -16,11 +22,21 @@ const CartContainer = () => {
             <li>Sub Total: ${producto.precio * producto.cantidad}</li>
           </ul>
           <div>
-            <button className="btn btn-outline-primary">+</button>
+            <button
+              className="btn btn-outline-primary"
+              onClick={() => sumarCantidad(producto.id)}
+            >
+              +
+            </button>
             <center>
               <label>Cantidad: {producto.cantidad}</label>
             </center>
-            <button className="btn btn-outline-primary">+</button>
+            <button
+              className="btn btn-outline-primary"
+              onClick={() => restarCantidad(producto.id)}
+            >
+              -
+            </button>
           </div>
           <button
             className="btn btn-outline-danger"
