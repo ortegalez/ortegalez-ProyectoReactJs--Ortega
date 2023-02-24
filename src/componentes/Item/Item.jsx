@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useCartContext } from "../../context/CartContext";
 
 const Item = ({ producto }) => {
-  const { agregarCarrito, cartList } = useCartContext();
+  const { agregar } = useCartContext();
+  const [inputType, setInputType] = useState("button");
+
+  const onAdd = () => {
+    agregar({ ...producto, cantidad: 1 });
+    setInputType("input");
+  };
 
   return (
     <div className="card w-25 mt-2 m-2">
@@ -20,14 +26,11 @@ const Item = ({ producto }) => {
         </h5>
       </div>
       <div className="card-footer">
-        <button
-          className="btn btn-outline-primary w-100"
-          onClick={agregarCarrito}
-        >
-          Agregar
+        <button className="btn btn-outline-success w-50" onClick={onAdd}>
+          {inputType === "button" ? "Agregar al carrito" : "Agregado"}
         </button>
         <Link to={`/detalle/${producto.id}`}>
-          <button className="btn btn-outline-primary w-100">Detalle</button>
+          <button className="btn btn-outline-primary w-50">Detalle</button>
         </Link>
       </div>
     </div>

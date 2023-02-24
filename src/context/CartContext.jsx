@@ -12,7 +12,22 @@ export const CartContextProvider = ({ children }) => {
     const existe = cartList.find((item) => item.id === newProducto.id);
     if (existe) {
       const newCartList = cartList.map((item) =>
-        item.id != newProducto.id
+        item.id !== newProducto.id
+          ? item
+          : { ...item, cantidad: item.cantidad + newProducto.cantidad }
+      );
+      setCartList(newCartList);
+    } else {
+      setCartList([...cartList, newProducto]);
+    }
+  };
+
+  const agregar = (newProducto) => {
+    const existe = cartList.find((item) => item.id === newProducto.id);
+
+    if (existe) {
+      const newCartList = cartList.map((item) =>
+        item.id !== newProducto.id
           ? item
           : { ...item, cantidad: item.cantidad + newProducto.cantidad }
       );
@@ -81,6 +96,7 @@ export const CartContextProvider = ({ children }) => {
         eliminarProducto,
         sumarCantidad,
         restarCantidad,
+        agregar,
       }}
     >
       {children}
