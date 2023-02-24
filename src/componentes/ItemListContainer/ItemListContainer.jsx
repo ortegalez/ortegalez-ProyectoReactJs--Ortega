@@ -40,7 +40,4 @@ export const ItemListContainer = ({ greeting, subGreeting }) => {
   );
 };
 
-// Para renombrar el localHost escribo la linea:
-// npm run dev -- --port 3000
-
 export default ItemListContainer;

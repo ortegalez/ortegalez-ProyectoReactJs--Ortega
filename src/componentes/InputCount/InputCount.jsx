@@ -3,14 +3,20 @@ import { Link } from "react-router-dom";
 
 const InputCount = () => {
   return (
-    <>
-      <Link to="/cart">
-        <button className="btn btn-outline-">Ir al Carrito</button>
-      </Link>
-      <Link to="/">
-        <button className="btn btn-outline-">Seguir comprando</button>
-      </Link>
-    </>
+    <center className="card mt-5 w-100">
+      <div className="card-body">
+        <Link to="/cart">
+          <button className="btn btn-outline-success w-50">
+            Ir al Carrito
+          </button>
+        </Link>
+        <Link to="/">
+          <button className="btn btn-outline-primary w-50">
+            Seguir comprando
+          </button>
+        </Link>
+      </div>
+    </center>
   );
 };
 export default InputCount;

@@ -1,8 +1,12 @@
+.ItemDetailContainer-contenedor {
+  height: 100vh;
+}
+
 .detalle-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(230, 39, 166, 0.397)(63, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(230, 39, 166, 0.397) (63, 0, 0);
 }
 
 .detalle-card {
@@ -11,14 +15,13 @@
   justify-content: space-around;
   width: 75vw;
   margin: 1rem;
-
 }
 
 .detalle-card div {
-    background-color: blue;
-    width: 100%;
+  background-color: blue;
+  width: 100%;
 }
 
 .detalle-descripcion {
-    margin: 10px;
+  margin: 10px;
 }

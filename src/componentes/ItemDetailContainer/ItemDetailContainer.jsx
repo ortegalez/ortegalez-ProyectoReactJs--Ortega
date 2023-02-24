@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { gFetch } from "../../utils/gFetch";
 import { useParams } from "react-router-dom";
 import ItemDetail from "../ItemDetail/ItemDetail";
+import "../ItemDetailContainer/ItemDetailContainer.css";
 
 const ItemDetailContainer = () => {
   const { idProducto } = useParams();
@@ -20,7 +21,11 @@ const ItemDetailContainer = () => {
     }
   }, []);
 
-  return <ItemDetail productos={productos} />;
+  return (
+    <div className="ItemDetailContainer-contenedor">
+      <ItemDetail productos={productos} />;
+    </div>
+  );
 };
 
 export default ItemDetailContainer;

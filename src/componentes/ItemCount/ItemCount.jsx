@@ -3,7 +3,6 @@ import { useState } from "react";
 
 const ItemCount = ({ initial = 1, stock = 10, onAdd }) => {
   const [count, setCount] = useState(initial);
-  const [inputType, setInputType] = useState("button");
 
   const handleSuma = () => {
     if (count < stock) {
@@ -26,7 +25,11 @@ const ItemCount = ({ initial = 1, stock = 10, onAdd }) => {
       <center className="card mt-5 w-100 ">
         <div className="card-body row">
           <div className="col">
-            <button className="btn btn-outline-dark w-100" onClick={handleSuma}>
+            <button
+              className="btn btn-outline-dark w-100"
+              onAdd={onAdd}
+              onClick={handleSuma}
+            >
               +
             </button>
           </div>

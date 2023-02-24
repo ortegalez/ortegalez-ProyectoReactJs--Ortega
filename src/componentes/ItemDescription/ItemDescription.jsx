@@ -1,6 +1,18 @@
 import React from "react";
+import { useCartContext } from "../../context/CartContext";
+import { useState } from "react";
+import ItemCount from "../ItemCount/ItemCount";
+import InputCount from "../InputCount/InputCount";
 
 const ItemDescription = ({ productos }) => {
+  const { agregarCarrito } = useCartContext();
+  const [inputType, setInputType] = useState("button");
+
+  const onAdd = (cant) => {
+    agregarCarrito({ ...productos, cantidad: cant });
+    setInputType("input");
+  };
+
   return (
     <div className="mt-2 d-flex justify-content-center ">
       <div className="card w-75 d-flex flex-row ">
@@ -17,6 +29,13 @@ const ItemDescription = ({ productos }) => {
             <h5 className="card-subtitle mb-2 text-body-tertiary">
               Precio: ${productos.precio}
             </h5>
+          </div>
+          <div>
+            {inputType === "button" ? (
+              <ItemCount initial={1} stock={30} onAdd={onAdd} />
+            ) : (
+              <InputCount />
+            )}
           </div>
         </div>
       </div>

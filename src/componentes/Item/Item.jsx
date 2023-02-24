@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useCartContext } from "../../context/CartContext";
 
 const Item = ({ producto }) => {
+  const { agregarCarrito, cartList } = useCartContext();
+
   return (
     <div className="card w-25 mt-2 m-2">
       <div className="card-header">
@@ -17,6 +20,12 @@ const Item = ({ producto }) => {
         </h5>
       </div>
       <div className="card-footer">
+        <button
+          className="btn btn-outline-primary w-100"
+          onClick={agregarCarrito}
+        >
+          Agregar
+        </button>
         <Link to={`/detalle/${producto.id}`}>
           <button className="btn btn-outline-primary w-100">Detalle</button>
         </Link>

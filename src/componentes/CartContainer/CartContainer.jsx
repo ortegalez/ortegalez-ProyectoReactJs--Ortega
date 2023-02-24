@@ -62,11 +62,12 @@ const CartContainer = () => {
                 </button>
               </div>
             </div>
-            <img
-              src={trash}
-              style={{ width: "25px", height: "25px" }}
-              onClick={() => eliminarProducto(producto.id)}
-            ></img>
+            <div className="itemCart-trash">
+              <img
+                src={trash}
+                onClick={() => eliminarProducto(producto.id)}
+              ></img>
+            </div>
             {/* <button
             className="btn btn-outline-danger"
             onClick={() => eliminarProducto(producto.id)}
@@ -81,15 +82,21 @@ const CartContainer = () => {
           </button>
         </div>
       </div>
-      <aside className="itemCart-total">
-        <div>
-          <h4>Sub-Total: ${total}</h4>
-          <h4>Total: ${total * 1.21}</h4>
+      <aside className="itemCart-total p-2">
+        <div className="d-flex justify-content-between">
+          <h4>Sub-Total:</h4>
+          <h4>${total}</h4>
         </div>
-        <div>
-          <button className="btn btn-outline-success ">Comprar</button>
-          <button className="btn btn-outline-primary ">Seguir comprando</button>
+        <div className="d-flex justify-content-between">
+          <h4>Total:</h4>
+          <h4>${total * 1.21}</h4>
         </div>
+        <center>
+          <button className="btn btn-outline-success m-1">Comprar</button>
+          <button className="btn btn-outline-primary m-1">
+            Seguir comprando
+          </button>
+        </center>
       </aside>
     </section>
   );
