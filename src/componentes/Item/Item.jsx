@@ -26,11 +26,13 @@ const Item = ({ producto }) => {
         </h5>
       </div>
       <div className="card-footer">
-        <button className="btn btn-outline-success w-50" onClick={onAdd}>
+        <button className="btn btn-outline-success w-50 btn-sm" onClick={onAdd}>
           {inputType === "button" ? "Agregar al carrito" : "Agregado"}
         </button>
         <Link to={`/detalle/${producto.id}`}>
-          <button className="btn btn-outline-primary w-50">Detalle</button>
+          <button className="btn btn-outline-primary w-50 btn-sm">
+            Detalle
+          </button>
         </Link>
       </div>
     </div>

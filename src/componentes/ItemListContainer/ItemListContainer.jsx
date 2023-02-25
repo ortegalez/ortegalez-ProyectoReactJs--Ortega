@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { gFetch } from "../../utils/gFetch";
 import { useParams } from "react-router-dom";
 import ItemList from "../ItemList/ItemList";
+// import { getFirestore, doc, getDoc } from "firebase/firebase";
 
 import "../ItemListContainer/ItemListContainer.css";
 
@@ -11,6 +12,14 @@ export const ItemListContainer = ({ greeting, subGreeting }) => {
   const [loading, setLoading] = useState(true);
 
   const { idCategoria } = useParams();
+
+  // Para traer un producto
+
+  // useEffect(() => {
+  //   const db = getFirestore();
+  //   const query = doc(db, "productos", "2JASTh2vjRtDeYEMm2VT");
+  //   getDoc(query).then((resp) => console.log(resp));
+  // }, []);
 
   useEffect(() => {
     // Filtrar por categoria

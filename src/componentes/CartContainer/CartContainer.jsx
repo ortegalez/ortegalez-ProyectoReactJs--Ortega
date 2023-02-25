@@ -18,6 +18,7 @@ const CartContainer = () => {
   );
 
   console.log(total);
+  console.log(cartList.length);
 
   return (
     <section className="cartContainer-section">
@@ -77,9 +78,15 @@ const CartContainer = () => {
           </div>
         ))}
         <div>
-          <button className="btn btn-outline-danger" onClick={vaciarCarrito}>
-            Vaciar Carrito
-          </button>
+          {cartList.length === 0 ? (
+            <div className="itemCart-vacio">
+              <h3>El carrito está vacio :(</h3>
+            </div>
+          ) : (
+            <button className="btn btn-danger" onClick={vaciarCarrito}>
+              Vaciar Carrito
+            </button>
+          )}
         </div>
       </div>
       <aside className="itemCart-total p-2">

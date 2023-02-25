@@ -1,4 +1,4 @@
-import imagen from "../../../images/shopping-cart.svg";
+import shoppingCart from "../../../images/shopping-cart.svg";
 import { useCartContext } from "../../context/CartContext";
 import "../CartWidget/CartWidget.css";
 
@@ -7,7 +7,7 @@ const CartWidget = () => {
 
   return (
     <div className="carrito">
-      <img src={imagen} alt="carrito" />
+      <img src={shoppingCart} alt="carrito" />
       <h5 className="text-white">{cartList.length}</h5>
     </div>
   );
