@@ -7,6 +7,7 @@ const productos = [
     precio: 1000,
     stock: 50,
     imagen: "../../src/assets/Productos/aceite-1.jpeg",
+    agregado: false,
   },
 
   {
@@ -17,6 +18,7 @@ const productos = [
     precio: 1000,
     stock: 50,
     imagen: "../../src/assets/Productos/aceite-2.jpeg",
+    agregado: false,
   },
   {
     id: "3",
@@ -26,6 +28,7 @@ const productos = [
     precio: 1000,
     stock: 50,
     imagen: "../../src/assets/Productos/aceite-3.jpeg",
+    agregado: false,
   },
   {
     id: "4",
@@ -35,6 +38,7 @@ const productos = [
     precio: 1000,
     stock: 50,
     imagen: "../../src/assets/Productos/aceite-4.jpeg",
+    agregado: false,
   },
   {
     id: "5",
@@ -44,6 +48,7 @@ const productos = [
     precio: 5000,
     stock: 50,
     imagen: "../../src/assets/Productos/aceite-5.jpeg",
+    agregado: false,
   },
   {
     id: "6",
@@ -53,6 +58,7 @@ const productos = [
     precio: 1500,
     stock: 50,
     imagen: "../../src/assets/Productos/gel-1.jpeg",
+    agregado: false,
   },
   {
     id: "7",
@@ -62,6 +68,7 @@ const productos = [
     precio: 1500,
     stock: 50,
     imagen: "../../src/assets/Productos/gel-2.jpeg",
+    agregado: false,
   },
   {
     id: "8",
@@ -72,6 +79,7 @@ const productos = [
     precio: 1500,
     stock: 50,
     imagen: "../../src/assets/Productos/gel-3.jpeg",
+    agregado: false,
   },
   {
     id: "9",
@@ -81,6 +89,7 @@ const productos = [
     precio: 1500,
     stock: 50,
     imagen: "../../src/assets/Productos/gel-4.jpeg",
+    agregado: false,
   },
   {
     id: "10",
@@ -90,6 +99,7 @@ const productos = [
     precio: 1500,
     stock: 50,
     imagen: "../../src/assets/Productos/gel-5.jpeg",
+    agregado: false,
   },
 ];
 

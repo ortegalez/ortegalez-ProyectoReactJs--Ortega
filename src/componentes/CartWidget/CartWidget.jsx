@@ -6,9 +6,9 @@ const CartWidget = () => {
   const { cartList } = useCartContext();
 
   return (
-    <div className="carrito">
+    <div className="shoppingCart m-1">
       <img src={shoppingCart} alt="carrito" />
-      <h5 className="text-white">{cartList.length}</h5>
+      <p className="text-white">{cartList.length}</p>
     </div>
   );
 };

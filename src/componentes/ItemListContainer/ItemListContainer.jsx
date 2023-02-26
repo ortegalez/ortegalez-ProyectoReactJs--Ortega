@@ -7,19 +7,11 @@ import ItemList from "../ItemList/ItemList";
 
 import "../ItemListContainer/ItemListContainer.css";
 
-export const ItemListContainer = ({ greeting, subGreeting }) => {
+export const ItemListContainer = () => {
   const [productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const { idCategoria } = useParams();
-
-  // Para traer un producto
-
-  // useEffect(() => {
-  //   const db = getFirestore();
-  //   const query = doc(db, "productos", "2JASTh2vjRtDeYEMm2VT");
-  //   getDoc(query).then((resp) => console.log(resp));
-  // }, []);
 
   useEffect(() => {
     // Filtrar por categoria
@@ -43,6 +35,7 @@ export const ItemListContainer = ({ greeting, subGreeting }) => {
   }, [idCategoria]);
 
   return loading ? (
+    // Buscar un loading
     <h2 className="cargando">Cargando productos...</h2>
   ) : (
     <div className="listContainer">{<ItemList productos={productos} />}</div>
