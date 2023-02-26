@@ -10,7 +10,7 @@ const Item = ({ producto }) => {
       <img src={producto.imagen} alt="foto" className="w-100 card-img-top" />
       <h4>{producto.nombre}</h4>
       <h3 className=" text-danger">${producto.precio}</h3>
-      {/* <p className="card-text">Categoria: {producto.categoria}</p> */}
+      <p className="card-text">Categoria: {producto.categoria}</p>
       <span className="card-text text-card">
         Hasta {cuotas} cuotas sin interés de $
         {Math.round(producto.precio / cuotas)}

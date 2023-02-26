@@ -37,7 +37,7 @@ export const CartContextProvider = ({ children }) => {
     }
   };
   // -------------------------------------------
-  const [inputType, setInputType] = useState(false);
+
   // ---------------------------------------
   const eliminarProducto = (id) => {
     const newCart = cartList.filter((item) => (item.id === id ? null : item));
@@ -82,8 +82,6 @@ export const CartContextProvider = ({ children }) => {
         sumarCantidad,
         restarCantidad,
         agregar,
-        inputType,
-        setInputType,
       }}
     >
       {children}

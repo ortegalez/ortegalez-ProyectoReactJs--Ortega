@@ -3,29 +3,18 @@ import React, { useState } from "react";
 import { useCartContext } from "../../context/CartContext";
 
 const ItemButtons = ({ producto }) => {
-  const { agregar, cartList } = useCartContext();
-  // const [inputType, setInputType] = useState("button");
+  const { agregar } = useCartContext();
+  const { inputType, setInputType } = useState("button");
 
-  // const myData = inputType.myData;
-  // console.log(myData);
-
-  const onAdd = () => {
-    agregar({ ...producto, cantidad: 1, agregado: true });
-    // setInputType(true);
+  const onAdd = (id) => {
+    agregar({ ...producto, cantidad: 1 });
+    setInputType("input");
   };
-
-  /*
-() => eliminarProducto(producto.id)
-
-*/
 
   return (
     <div>
-      {producto.agregado === false ? (
-        <button
-          className="btn btn-outline-success m-2"
-          onClick={(producto) => onAdd(producto.id)}
-        >
+      {inputType === "button" ? (
+        <button className="btn btn-outline-success m-2" onClick={onAdd}>
           Agregar al carrito
         </button>
       ) : (
