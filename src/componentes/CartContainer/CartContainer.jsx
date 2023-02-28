@@ -17,9 +17,6 @@ const CartContainer = () => {
     0
   );
 
-  console.log(total);
-  console.log(cartList.length);
-
   return (
     <section className="cartContainer-section">
       <div className="cartContainer-contenedor">
@@ -28,7 +25,6 @@ const CartContainer = () => {
             <img src={producto.imagen} className="itemCart-img" />
 
             <div className="itemCart-detalles">
-              {/* <h5>Detalles</h5> */}
               <h4>{producto.nombre}</h4>
               <p>{producto.detalle}.</p>
             </div>
@@ -69,12 +65,6 @@ const CartContainer = () => {
                 onClick={() => eliminarProducto(producto.id)}
               ></img>
             </div>
-            {/* <button
-            className="btn btn-outline-danger"
-            onClick={() => eliminarProducto(producto.id)}
-          >
-            Quitar producto
-          </button> */}
           </div>
         ))}
         <div>

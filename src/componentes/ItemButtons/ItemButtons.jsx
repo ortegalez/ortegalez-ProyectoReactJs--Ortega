@@ -1,25 +1,28 @@
 import { Link } from "react-router-dom";
-import React, { useState } from "react";
 import { useCartContext } from "../../context/CartContext";
 
 const ItemButtons = ({ producto }) => {
-  const { agregar } = useCartContext();
-  const { inputType, setInputType } = useState("button");
+  const { agregar, cartList } = useCartContext();
 
-  const onAdd = (id) => {
-    agregar({ ...producto, cantidad: 1 });
-    setInputType("input");
-  };
+  // Funcion para cotejar los productos del cartlist con los item que agregue desde itemDatailContainer
+  const isItemInCart = cartList.some((item) => item.id === producto.id);
+
+  // const isItemInCart = !!cartList.find(item => item.id === producto.id);
+  // const isItemInCart = Boolean(cartList.find(item => item.id === producto.id));
 
   return (
     <div>
-      {inputType === "button" ? (
-        <button className="btn btn-outline-success m-2" onClick={onAdd}>
+      {isItemInCart ? (
+        <p className="btn btn-success m-2">Agregado</p>
+      ) : (
+        <button
+          className="btn btn-outline-success m-2"
+          onClick={() => agregar({ ...producto, cantidad: 1 })}
+        >
           Agregar al carrito
         </button>
-      ) : (
-        <p className="btn btn-success m-2">Agregado</p>
       )}
+
       <Link to={`/detalle/${producto.id}`}>
         <button className="btn btn-outline-primary m-2">Detalle</button>
       </Link>

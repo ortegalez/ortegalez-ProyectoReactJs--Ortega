@@ -50,77 +50,73 @@ export const ItemListContainer = () => {
   //NOTA: Los llamados a APIs siempre se hacen en componentes container
 
   // ___________________________________ Para crear un array filtrado_______________________________
-  useEffect(() => {
-    if (idCategoria) {
-      const db = getFirestore();
-      const queryCollections = collection(db, "productos");
-      const queryFilter = query(
-        queryCollections,
-        where("categoria", "==", idCategoria)
-        // orderBy("precio", "asc")
-      );
-
-      getDocs(queryFilter)
-        .then((resp) => {
-          setProductos(
-            resp.docs.map((producto) => ({
-              id: producto.id,
-              ...producto.data(),
-            }))
-          );
-        })
-        .catch((err) => console.error(err))
-        .finally(() => setLoading(false));
-    } else {
-      const db = getFirestore();
-      // Al ser un array se usa el collectios
-      const queryCollections = collection(db, "productos");
-      getDocs(queryCollections)
-        .then((resp) =>
-          setProductos(
-            resp.docs.map((producto) => ({
-              id: producto.id,
-              ...producto.data(),
-            }))
-          )
-        )
-        .catch((err) => console.error(err))
-        .finally(() => setLoading(false));
-    }
-  }, [idCategoria]);
-
-  // -------------------------------------------------------
   // useEffect(() => {
-  //   // Filtrar por categoria
   //   if (idCategoria) {
-  //     gFetch()
-  //       .then((res) => {
+  //     const db = getFirestore();
+  //     const queryCollections = collection(db, "productos");
+  //     const queryFilter = query(
+  //       queryCollections,
+  //       where("categoria", "==", idCategoria)
+  //       // orderBy("precio", "asc")
+  //     );
+
+  //     getDocs(queryFilter)
+  //       .then((resp) => {
   //         setProductos(
-  //           res.filter((producto) => producto.categoria == idCategoria)
+  //           resp.docs.map((producto) => ({
+  //             id: producto.id,
+  //             ...producto.data(),
+  //           }))
   //         );
   //       })
-  //       .catch((error) => console.log(error))
+  //       .catch((err) => console.error(err))
   //       .finally(() => setLoading(false));
   //   } else {
-  //     gFetch()
-  //       .then((res) => {
-  //         setProductos(res);
-  //       })
-  //       .catch((error) => console.log(error))
+  //     const db = getFirestore();
+  //     // Al ser un array se usa el collectios
+  //     const queryCollections = collection(db, "productos");
+  //     getDocs(queryCollections)
+  //       .then((resp) =>
+  //         setProductos(
+  //           resp.docs.map((producto) => ({
+  //             id: producto.id,
+  //             ...producto.data(),
+  //           }))
+  //         )
+  //       )
+  //       .catch((err) => console.error(err))
   //       .finally(() => setLoading(false));
   //   }
   // }, [idCategoria]);
 
-  console.log(productos);
+  // -------------------------------------------------------
+  useEffect(() => {
+    // Filtrar por categoria
+    if (idCategoria) {
+      gFetch()
+        .then((res) => {
+          setProductos(
+            res.filter((producto) => producto.categoria == idCategoria)
+          );
+        })
+        .catch((error) => console.log(error))
+        .finally(() => setLoading(false));
+    } else {
+      gFetch()
+        .then((res) => {
+          setProductos(res);
+        })
+        .catch((error) => console.log(error))
+        .finally(() => setLoading(false));
+    }
+  }, [idCategoria]);
+
+  // console.log(productos);
 
   return loading ? (
-    // Buscar un loading
-    // <h2 className="cargando">Cargando productos...</h2>
-    <>
-      <div className="loader">
-        <div className="spinner-9"></div>
-      </div>
-    </>
+    <div className="loader">
+      <div className="spinner-9"></div>
+    </div>
   ) : (
     <div className="listContainer">{<ItemList productos={productos} />}</div>
   );

@@ -110,3 +110,15 @@ export const gFetch = () => {
     }, 1000)
   );
 };
+
+/*
+- Crear componenete loader.
+- Poner el loader en el itemDetailContainer.
+- Agregar condicionales en ItemListContainer para verificar que el array de productos de 
+Firebase no este vacio.
+- Modificar UseEffect para cargar detalles en en itemDetailContainer.
+- Crear componente para detalles de item en el CartContainer.
+- Renombrar todas las funciones con nombre en ingles.
+- Modicicar apariciencia de los botones de ItemDescription
+
+*/
