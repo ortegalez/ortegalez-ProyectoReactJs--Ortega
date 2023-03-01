@@ -3,7 +3,7 @@ import NavBar from "./componentes/NavBar/NavBar";
 
 // Librias creadas por nosotros, al medio
 import CartContainer from "./componentes/CartContainer/CartContainer";
-import ItemCount from "./componentes/ItemCount/ItemCount";
+
 import ItemDetailContainer from "./componentes/ItemDetailContainer/ItemDetailContainer";
 import ItemListContainer from "./componentes/ItemListContainer/ItemListContainer";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
@@ -22,23 +22,10 @@ function App(props) {
       <CartContextProvider>
         <NavBar />
         <Routes>
-          <Route
-            path="/"
-            element={
-              <ItemListContainer
-                greeting={greeting}
-                subGreeting={subGreeting}
-              />
-            }
-          />
+          <Route path="/" element={<ItemListContainer />} />
           <Route
             path="/categoria/:idCategoria"
-            element={
-              <ItemListContainer
-                greeting={greeting}
-                subGreeting={subGreeting}
-              />
-            }
+            element={<ItemListContainer />}
           />
           <Route
             path="/detalle/:idProducto"
@@ -48,7 +35,6 @@ function App(props) {
           <Route path="#" element={<Navigate to="/" />} />
         </Routes>
         <Footer />
-        {/* <ItemCount /> */}
       </CartContextProvider>
     </BrowserRouter>
 

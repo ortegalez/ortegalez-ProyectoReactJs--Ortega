@@ -5,9 +5,9 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0 0.25rem;
-  color: #ffffff;
   border: 1px transparent rgba(230, 47, 47, 0);
   border-radius: 0.5rem;
+  text-decoration: none;
 }
 
 .shoppingCart:hover {
@@ -18,8 +18,9 @@
   width: 1.5rem;
 }
 
-.shoppingCart p {
+.shoppingCart-text {
+  text-decoration: solid;
   font-weight: bold;
   font-size: 1rem;
-  text-decoration: none;
+  color: #ffffff;
 }

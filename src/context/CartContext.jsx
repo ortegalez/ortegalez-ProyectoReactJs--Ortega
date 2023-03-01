@@ -71,6 +71,14 @@ export const CartContextProvider = ({ children }) => {
     );
   };
 
+  // metodo para dar formato de numero contables a un valor numerico
+  // console.log(new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(number));
+  const intl = (valor) => {
+    return new Intl.NumberFormat("de-DE", {
+      maximumSignificantDigits: 4,
+    }).format(valor);
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -82,6 +90,7 @@ export const CartContextProvider = ({ children }) => {
         sumarCantidad,
         restarCantidad,
         agregar,
+        intl,
       }}
     >
       {children}

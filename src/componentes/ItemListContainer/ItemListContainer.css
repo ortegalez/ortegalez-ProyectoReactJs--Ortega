@@ -6,14 +6,6 @@
   background-color: #dadada;
 }
 
-.greeting {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 75vh;
-}
-
 .cargando {
   height: 85vh;
   display: flex;
@@ -34,7 +26,7 @@ h4 {
   align-items: center;
 }
 
-.spinner-9 {
+.loader-spinner {
   width: 50px;
   aspect-ratio: 1;
   border-radius: 50%;
