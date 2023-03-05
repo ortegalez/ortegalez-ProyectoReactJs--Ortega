@@ -30,22 +30,17 @@ Los inputs del formulario los controlamos mediante estados controlados y eventos
       cantidad,
     }));
     order.total = total(IVA, subTotal);
-    // Cargar un documento al firebase
+
     const db = getFirestore();
     const ordersCollection = collection(db, "orders");
     addDoc(ordersCollection, order).then((resp) => console.log(resp));
     console.log(order);
   };
 
-  //  Para que no ejecuten creamos una funcion
   const handleOnChange = (evt) => {
-    // console.log(evt.target.nombre); // nombre del input
-    // console.log(evt.target.value); // valor del input
-
     setFormData({
-      // Uso el spread operator para acceder a las propiedades de mi objeto formulario
       ...formData,
-      // Actualizo de forma dinamica la propiedad de mi objeto formulario
+
       [evt.target.nombre]: evt.target.value,
     });
   };
