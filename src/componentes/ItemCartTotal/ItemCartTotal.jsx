@@ -1,7 +1,7 @@
 import React from "react";
 
-import { Link } from "react-router-dom";
 import { useCartContext } from "../../context/CartContext";
+import BuyForm from "../BuyForm/BuyForm";
 
 import "../ItemCartTotal/ItemCartTotal.css";
 
@@ -22,17 +22,7 @@ const ItemCartTotal = () => {
         <h4>Total:</h4>
         <h4>${intl(total(IVA, subTotal))}</h4>
       </div>
-      <center>
-        <button className="btn btn-outline-success m-1">
-          {/* <button className="btn btn-outline-success m-1" onClick={insertOrder}> */}
-          Comprar
-        </button>
-        <Link to="/">
-          <button className="btn btn-outline-primary m-1">
-            Seguir comprando
-          </button>
-        </Link>
-      </center>
+      {cartList.length !== 0 ? <BuyForm /> : null}
     </aside>
   );
 };

@@ -9,5 +9,5 @@
   border-radius: 0.5rem;
   margin: 0.5rem;
   background-color: #ffff;
-  height: 15rem;
+  height: min-content;
 }
