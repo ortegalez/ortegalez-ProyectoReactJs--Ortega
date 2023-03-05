@@ -3,7 +3,6 @@ import NavBar from "./componentes/NavBar/NavBar";
 
 // Librias creadas por nosotros, al medio
 import CartContainer from "./componentes/CartContainer/CartContainer";
-
 import ItemDetailContainer from "./componentes/ItemDetailContainer/ItemDetailContainer";
 import ItemListContainer from "./componentes/ItemListContainer/ItemListContainer";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";

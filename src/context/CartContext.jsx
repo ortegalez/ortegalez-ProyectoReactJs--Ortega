@@ -21,7 +21,7 @@ export const CartContextProvider = ({ children }) => {
       setCartList([...cartList, newProducto]);
     }
   };
-
+  // Esta funcion es la del boton "Agregar a carrito" que esta en Home
   const agregar = (newProducto) => {
     const existe = cartList.find((item) => item.id === newProducto.id);
 
@@ -34,11 +34,13 @@ export const CartContextProvider = ({ children }) => {
       setCartList(newCartList);
     } else {
       setCartList([...cartList, newProducto]);
+      setCartListNumber(cartListCount);
     }
   };
-  // -------------------------------------------
 
-  // ---------------------------------------
+  const cartListCount = () =>
+    cartList.reduce((count, producto) => (count += producto.cantidad), 0);
+
   const eliminarProducto = (id) => {
     const newCart = cartList.filter((item) => (item.id === id ? null : item));
     setCartList(newCart);
@@ -71,6 +73,21 @@ export const CartContextProvider = ({ children }) => {
     );
   };
 
+  const IVA = 21;
+
+  const imp = (IVA, subTotal) => {
+    return (subTotal * IVA) / 100;
+  };
+
+  const subTotal = cartList.reduce(
+    (acc, producto) => acc + producto.precio * producto.cantidad,
+    0
+  );
+
+  const total = (IVA, subTotal) => {
+    return subTotal + (subTotal * IVA) / 100;
+  };
+
   // metodo para dar formato de numero contables a un valor numerico
   // console.log(new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(number));
   const intl = (valor) => {
@@ -91,6 +108,11 @@ export const CartContextProvider = ({ children }) => {
         restarCantidad,
         agregar,
         intl,
+        IVA,
+        imp,
+        total,
+        subTotal,
+        cartListCount,
       }}
     >
       {children}
