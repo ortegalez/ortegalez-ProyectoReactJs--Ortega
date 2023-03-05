@@ -1,14 +1,19 @@
 import React from "react";
-import "../ItemCart/ItemCart.css";
-import trash from "../../../public/trash.png";
 import { useCartContext } from "../../context/CartContext";
 
+import trash from "../../../public/trash.png";
+
+import "../ItemCart/ItemCart.css";
+import { Link } from "react-router-dom";
+
 const ItemCart = ({ producto }) => {
-  const { eliminarProducto, sumarCantidad, restarCantidad } = useCartContext();
+  const { deleteItem, addItem, subtractItem } = useCartContext();
 
   return (
     <div className="itemCart" key={producto.id}>
-      <img src={producto.imagen} className="itemCart-img" />
+      <Link to={`/detalle/${producto.id}`}>
+        <img src={producto.imagen} className="itemCart-img" />
+      </Link>
       <div className="itemCart-detalles">
         <h4>{producto.nombre}</h4>
         <p>{producto.detalle}.</p>
@@ -22,7 +27,7 @@ const ItemCart = ({ producto }) => {
         <div className="itemCart-cantidad">
           <button
             className="btn btn-outline-primary"
-            onClick={() => sumarCantidad(producto.id)}
+            onClick={() => addItem(producto.id)}
           >
             +
           </button>
@@ -31,7 +36,7 @@ const ItemCart = ({ producto }) => {
           </center>
           <button
             className="btn btn-outline-primary"
-            onClick={() => restarCantidad(producto.id)}
+            onClick={() => subtractItem(producto.id)}
           >
             -
           </button>
@@ -42,7 +47,7 @@ const ItemCart = ({ producto }) => {
         <h4>${producto.precio * producto.cantidad}</h4>
       </div>
       <div className="itemCart-trash">
-        <img src={trash} onClick={() => eliminarProducto(producto.id)}></img>
+        <img src={trash} onClick={() => deleteItem(producto.id)}></img>
       </div>
     </div>
   );

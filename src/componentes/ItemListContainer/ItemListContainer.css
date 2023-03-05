@@ -6,11 +6,12 @@
   background-color: #dadada;
 }
 
-.cargando {
-  height: 85vh;
+.itemList {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  min-height: 100vh;
 }
 
 h3,

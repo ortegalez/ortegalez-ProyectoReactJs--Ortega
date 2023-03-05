@@ -112,8 +112,8 @@ export const gFetch = () => {
 };
 
 /*
-- Crear componenete loader.
-- Poner el loader en el itemDetailContainer.
+- Crear base de datos de Firebase en ingles
+
 - Agregar condicionales en ItemListContainer para verificar que el array de productos de 
 Firebase no este vacio.
 - Modificar UseEffect para cargar detalles en en itemDetailContainer.

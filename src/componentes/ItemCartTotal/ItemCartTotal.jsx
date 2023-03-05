@@ -22,6 +22,7 @@ const ItemCartTotal = () => {
         <h4>Total:</h4>
         <h4>${intl(total(IVA, subTotal))}</h4>
       </div>
+      {/* <BuyForm /> */}
       {cartList.length !== 0 ? <BuyForm /> : null}
     </aside>
   );

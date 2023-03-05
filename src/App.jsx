@@ -1,21 +1,15 @@
-// Libreria de donde importamos cosas, arriba
-import NavBar from "./componentes/NavBar/NavBar";
-
-// Librias creadas por nosotros, al medio
-import CartContainer from "./componentes/CartContainer/CartContainer";
-import ItemDetailContainer from "./componentes/ItemDetailContainer/ItemDetailContainer";
-import ItemListContainer from "./componentes/ItemListContainer/ItemListContainer";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
-// Librerias de estilo, al ultimo
-import "bootstrap/dist/css/bootstrap.min.css";
+import CartContainer from "./componentes/CartContainer/CartContainer";
+import NavBar from "./componentes/NavBar/NavBar";
+import ItemDetailContainer from "./componentes/ItemDetailContainer/ItemDetailContainer";
+import ItemListContainer from "./componentes/ItemListContainer/ItemListContainer";
 import Footer from "./componentes/Footer/Footer";
 import { CartContextProvider } from "./context/CartContext";
 
-function App(props) {
-  const greeting = "Bienvenido a Desiree Sex Shop";
-  const subGreeting = "Sitio en construcción";
+import "bootstrap/dist/css/bootstrap.min.css";
 
+function App(props) {
   return (
     <BrowserRouter>
       <CartContextProvider>
@@ -36,8 +30,6 @@ function App(props) {
         <Footer />
       </CartContextProvider>
     </BrowserRouter>
-
-    // BrowserRouter me permite usar todos los componentes dentro de este contexto
   );
 }
 

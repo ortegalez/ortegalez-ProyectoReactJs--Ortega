@@ -4,12 +4,8 @@ import { Link } from "react-router-dom";
 import { useCartContext } from "../../context/CartContext";
 
 const ItemCartEmpty = () => {
-  const { cartList, vaciarCarrito } = useCartContext();
+  const { cartList, emptyCart } = useCartContext();
 
-  const total = cartList.reduce(
-    (acc, producto) => acc + producto.precio * producto.cantidad,
-    0
-  );
   return (
     <div>
       {cartList.length === 0 ? (
@@ -20,7 +16,7 @@ const ItemCartEmpty = () => {
           </Link>
         </center>
       ) : (
-        <button className="btn btn-danger" onClick={vaciarCarrito}>
+        <button className="btn btn-danger" onClick={emptyCart}>
           Vaciar Carrito
         </button>
       )}

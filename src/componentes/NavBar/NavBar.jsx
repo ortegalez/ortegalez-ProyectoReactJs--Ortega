@@ -1,22 +1,17 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { Link, NavLink } from "react-router-dom";
 
 import CartWidget from "../CartWidget/CartWidget";
-
 import logo from "../../../images/DesireeShop.jpeg";
 
 import "../../componentes/NavBar/NavBar.css";
-import { Link, NavLink } from "react-router-dom";
 
 const NavBar = () => {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
-        {/* <Navbar.Brand href="#home">Desiree Shop */}
-        {/* <img src={logo} className='imagen-logo'></img> */}
-        {/* </Navbar.Brand> */}
-
         <NavLink to="/">
           <img src={logo} className="imagen-logo"></img>
         </NavLink>

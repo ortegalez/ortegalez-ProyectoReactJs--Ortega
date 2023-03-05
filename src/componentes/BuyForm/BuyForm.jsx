@@ -1,16 +1,17 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 
-import { Link } from "react-router-dom";
-
 import { useCartContext } from "../../context/CartContext";
+import PurchaseReceipt from "../PurchaseReceipt/PurchaseReceipt";
 
 const BuyForm = () => {
-  const { cartList, intl, IVA, imp, subTotal, total } = useCartContext();
+  const [show, setShow] = useState(false);
+  const { cartList, intl, IVA, imp, subTotal, total, emptyCart } =
+    useCartContext();
 
-  /*____________________________ Crear formulario controlado_________________________ 
-Los inputs del formulario los controlamos mediante estados controlados y eventos. 
-*/
+  const [isId, setIsId] = useState("");
+
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -33,19 +34,29 @@ Los inputs del formulario los controlamos mediante estados controlados y eventos
 
     const db = getFirestore();
     const ordersCollection = collection(db, "orders");
-    addDoc(ordersCollection, order).then((resp) => console.log(resp));
-    console.log(order);
+    addDoc(ordersCollection, order)
+      .then((resp) => setIsId(resp.id))
+      .catch((err) => console.log(err))
+      .finally(() => {
+        setFormData({
+          name: "",
+          phone: "",
+          email: "",
+          repetEmail: "",
+        });
+      });
+
+    setShow(true);
+    console.log(formData);
   };
 
   const handleOnChange = (evt) => {
     setFormData({
       ...formData,
-
       [evt.target.nombre]: evt.target.value,
     });
   };
 
-  console.log();
   return (
     <div className="card m-1 p-2 w-100">
       <h4 className="card-title">Datos del comprador</h4>
@@ -62,7 +73,7 @@ Los inputs del formulario los controlamos mediante estados controlados y eventos
         <div className="input-group mb-3">
           <input
             className="form-control"
-            type="number"
+            type="tel"
             name="phone"
             placeholder="Ingrese teléfono"
             onChange={handleOnChange}
@@ -71,7 +82,7 @@ Los inputs del formulario los controlamos mediante estados controlados y eventos
         <div className="input-group mb-3">
           <input
             className="form-control"
-            type="text"
+            type="email"
             name="email"
             placeholder="Ingrese email"
             onChange={handleOnChange}
@@ -80,7 +91,7 @@ Los inputs del formulario los controlamos mediante estados controlados y eventos
         <div className="input-group mb-3">
           <input
             className="form-control"
-            type="text"
+            type="email"
             name="repetEmail"
             placeholder="Repetir email ingresado"
             onChange={handleOnChange}
@@ -95,6 +106,9 @@ Los inputs del formulario los controlamos mediante estados controlados y eventos
           </Link>
         </center>
       </form>
+      {isId !== "" && (
+        <PurchaseReceipt show={show} setShow={setShow} isId={isId} />
+      )}
     </div>
   );
 };
