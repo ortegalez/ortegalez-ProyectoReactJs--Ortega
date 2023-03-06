@@ -109,7 +109,7 @@ const BuyForm = () => {
             name="repeatEmail"
             placeholder="Repetir email ingresado"
             onChange={handleOnChange}
-            // value={formData.repeatEmail}
+            value={formData.repeatEmail}
           />
         </div>
         <center>
