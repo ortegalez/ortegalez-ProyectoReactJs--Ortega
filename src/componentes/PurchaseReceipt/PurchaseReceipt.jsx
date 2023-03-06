@@ -7,11 +7,10 @@ import { useCartContext } from "../../context/CartContext";
 const PurchaseReceipt = ({ show, setShow, isId }) => {
   const { emptyCart } = useCartContext();
 
-  // const handleClose = (evt) => {
-  const handleClose = () => {
-    // evt.preventDefault();
+  const handleClose = (evt) => {
+    evt.preventDefault();
     setShow(false);
-    // emptyCart();
+    emptyCart();
   };
 
   return (

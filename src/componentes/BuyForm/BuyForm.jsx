@@ -47,7 +47,6 @@ const BuyForm = () => {
       });
 
     setShow(true);
-    console.log(formData);
   };
 
   const handleOnChange = (evt) => {
