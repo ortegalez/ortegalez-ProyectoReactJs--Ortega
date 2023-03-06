@@ -7,20 +7,17 @@ import PurchaseReceipt from "../PurchaseReceipt/PurchaseReceipt";
 
 const BuyForm = () => {
   const [show, setShow] = useState(false);
+  const [isId, setIsId] = useState("");
   const { cartList, intl, IVA, imp, subTotal, total, emptyCart } =
     useCartContext();
-
-  const [isId, setIsId] = useState("");
-
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     email: "",
-    repetEmail: "",
+    repeatEmail: "",
   });
 
-  const insertOrder = (evt) => {
-    evt.preventDefault();
+  const insertOrder = () => {
     const order = {};
     order.buyer = formData;
     order.isActive = true;
@@ -31,7 +28,9 @@ const BuyForm = () => {
       cantidad,
     }));
     order.total = total(IVA, subTotal);
+    setShow(true);
 
+    // Firebase
     const db = getFirestore();
     const ordersCollection = collection(db, "orders");
     addDoc(ordersCollection, order)
@@ -42,11 +41,9 @@ const BuyForm = () => {
           name: "",
           phone: "",
           email: "",
-          repetEmail: "",
+          repeatEmail: "",
         });
       });
-
-    setShow(true);
   };
 
   const handleOnChange = (evt) => {
@@ -56,10 +53,25 @@ const BuyForm = () => {
     });
   };
 
+  const validateForm = (evt) => {
+    evt.preventDefault();
+    const regex =
+      /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    if (
+      regex.test(formData.email) &&
+      formData.email !== " " &&
+      formData.email === formData.repeatEmail
+    ) {
+      insertOrder();
+    } else {
+      console.log("Error en formulario del email");
+    }
+  };
+
   return (
     <div className="card m-1 p-2 w-100">
       <h4 className="card-title">Datos del comprador</h4>
-      <form onSubmit={insertOrder}>
+      <form onSubmit={validateForm}>
         <div className="input-group mb-3">
           <input
             className="form-control"
@@ -67,6 +79,7 @@ const BuyForm = () => {
             name="name"
             placeholder="Ingrese nombre y apellido"
             onChange={handleOnChange}
+            value={formData.name}
           />
         </div>
         <div className="input-group mb-3">
@@ -76,6 +89,7 @@ const BuyForm = () => {
             name="phone"
             placeholder="Ingrese teléfono"
             onChange={handleOnChange}
+            value={formData.phone}
           />
         </div>
         <div className="input-group mb-3">
@@ -85,19 +99,21 @@ const BuyForm = () => {
             name="email"
             placeholder="Ingrese email"
             onChange={handleOnChange}
+            value={formData.email}
           />
         </div>
         <div className="input-group mb-3">
           <input
             className="form-control"
             type="email"
-            name="repetEmail"
+            name="repeatEmail"
             placeholder="Repetir email ingresado"
             onChange={handleOnChange}
+            // value={formData.repeatEmail}
           />
         </div>
         <center>
-          <button className="btn btn-outline-success m-1" onClick={insertOrder}>
+          <button className="btn btn-outline-success m-1" type="submit">
             Finalizar compra
           </button>
           <Link to="/">

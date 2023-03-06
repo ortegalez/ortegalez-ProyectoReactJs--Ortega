@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useCartContext } from "../../context/CartContext";
 
 const PurchaseReceipt = ({ show, setShow, isId }) => {
