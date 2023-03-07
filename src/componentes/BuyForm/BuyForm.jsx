@@ -5,9 +5,13 @@ import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { useCartContext } from "../../context/CartContext";
 import PurchaseReceipt from "../PurchaseReceipt/PurchaseReceipt";
 
+import Swal from "sweetalert2";
+
 const BuyForm = () => {
   const [show, setShow] = useState(false);
+
   const [isId, setIsId] = useState("");
+
   const { cartList, intl, IVA, imp, subTotal, total, emptyCart } =
     useCartContext();
   const [formData, setFormData] = useState({
@@ -17,17 +21,41 @@ const BuyForm = () => {
     repeatEmail: "",
   });
 
+  // SweetAlert2
+  const warning = () => {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "¡Por favor revisa los datos ingresados!",
+    });
+  };
+
+  const validateForm = (evt) => {
+    evt.preventDefault();
+    const regex =
+      /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    if (
+      regex.test(formData.email) &&
+      formData.email !== " " &&
+      formData.email === formData.repeatEmail
+    ) {
+      insertOrder();
+    } else {
+      warning();
+    }
+  };
+
   const insertOrder = () => {
     const order = {};
     order.buyer = formData;
     order.isActive = true;
+    order.total = total(IVA, subTotal);
     order.items = cartList.map(({ id, nombre, precio, cantidad }) => ({
       id,
       nombre,
       precio,
       cantidad,
     }));
-    order.total = total(IVA, subTotal);
     setShow(true);
 
     // Firebase
@@ -49,30 +77,16 @@ const BuyForm = () => {
   const handleOnChange = (evt) => {
     setFormData({
       ...formData,
-      [evt.target.nombre]: evt.target.value,
+      [evt.target.name]: evt.target.value,
     });
-  };
-
-  const validateForm = (evt) => {
-    evt.preventDefault();
-    const regex =
-      /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-    if (
-      regex.test(formData.email) &&
-      formData.email !== " " &&
-      formData.email === formData.repeatEmail
-    ) {
-      insertOrder();
-    } else {
-      console.log("Error en formulario del email");
-    }
   };
 
   return (
     <div className="card m-1 p-2 w-100">
       <h4 className="card-title">Datos del comprador</h4>
       <form onSubmit={validateForm}>
-        <div className="input-group mb-3">
+        <div className="mb-2">
+          <label className="form-label">Nombre y Apellido:</label>
           <input
             className="form-control"
             type="text"
@@ -82,7 +96,8 @@ const BuyForm = () => {
             value={formData.name}
           />
         </div>
-        <div className="input-group mb-3">
+        <div className="mb-3">
+          <label className="form-label">Teléfono:</label>
           <input
             className="form-control"
             type="tel"
@@ -92,7 +107,8 @@ const BuyForm = () => {
             value={formData.phone}
           />
         </div>
-        <div className="input-group mb-3">
+        <div className="mb-2">
+          <label className="form-label">Email:</label>
           <input
             className="form-control"
             type="email"
@@ -102,7 +118,8 @@ const BuyForm = () => {
             value={formData.email}
           />
         </div>
-        <div className="input-group mb-3">
+        <div className="mb-2">
+          <label className="form-label">Repetir Email:</label>
           <input
             className="form-control"
             type="email"
