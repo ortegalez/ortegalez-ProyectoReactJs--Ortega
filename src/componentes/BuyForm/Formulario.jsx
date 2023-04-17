@@ -5,8 +5,6 @@ import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { useCartContext } from "../../context/CartContext";
 import PurchaseReceipt from "../PurchaseReceipt/PurchaseReceipt";
 
-import Swal from "sweetalert2";
-
 const BuyForm = () => {
   const [show, setShow] = useState(false);
 
@@ -14,6 +12,8 @@ const BuyForm = () => {
 
   const { cartList, intl, IVA, imp, subTotal, total, emptyCart } =
     useCartContext();
+
+  // Formulario controlado
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -21,14 +21,19 @@ const BuyForm = () => {
     repeatEmail: "",
   });
 
-  // SweetAlet
-  const warning = () => {
-    Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "¡Por favor revisa los datos ingresados!",
-    });
-  };
+  // Funcion que genera advertencia:
+  // function NotiflyAdv() {
+  //   return toast.warn("¡Ingresa un Email Validos!", {
+  //     position: "top-right",
+  //     autoClose: 5000,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //     progress: undefined,
+  //     theme: "colored",
+  //   });
+  // }
 
   // Esta funcion la meto dentro de una funcion que valide:
   const validateForm = (evt) => {
@@ -42,11 +47,13 @@ const BuyForm = () => {
     ) {
       insertOrder();
     } else {
-      warning();
+      console.log("Error en formulario del email");
     }
   };
 
+  // const insertOrder = (evt) => {
   const insertOrder = () => {
+    // evt.preventDefault();
     const order = {};
     order.buyer = formData;
     order.isActive = true;
@@ -58,6 +65,8 @@ const BuyForm = () => {
       cantidad,
     }));
     setShow(true);
+    // setIsId("el ID de su orden");
+    // console.log(isId);
 
     // __________________ Firebase __________________
     const db = getFirestore();
@@ -131,7 +140,11 @@ const BuyForm = () => {
           />
         </div>
         <center>
-          <button className="btn btn-outline-success m-1" type="submit">
+          <button
+            className="btn btn-outline-success m-1"
+            type="submit"
+            // onClick={validateForm}
+          >
             Finalizar compra
           </button>
           <Link to="/">

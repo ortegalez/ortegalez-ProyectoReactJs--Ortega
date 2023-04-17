@@ -1,10 +1,9 @@
 import React from "react";
-import { useCartContext } from "../../context/CartContext";
-
-import trash from "../../../public/trash.png";
-
-import "../ItemCart/ItemCart.css";
 import { Link } from "react-router-dom";
+
+import { useCartContext } from "../../context/CartContext";
+import trash from "../../../public/trash.png";
+import "../ItemCart/ItemCart.css";
 
 const ItemCart = ({ producto }) => {
   const { deleteItem, addItem, subtractItem } = useCartContext();
