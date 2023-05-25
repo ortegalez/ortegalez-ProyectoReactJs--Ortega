@@ -22,4 +22,3 @@ https://inspiring-chaja-b00dcf.netlify.app
 
   "bootstrap": 5.2.3, "bootstrap-icons": 1.10.3, "firebase": 9.17.1, "react": 18.2.0, "react-bootstrap0": 2.7.0,"react-dom": 18.2.0, "react-router-dom": 6.8.0 y "sweetalert2": 11.7.3
 
-¿De qué trata? Es un proyecto frontend de una aplicacion web (Web App) para un E-Commerce de venta de productos tecnologicos de la empresa Apple trabajado con React, Vite, JSX y Firebase. Este proyecto manejara las vistas gracias de react router dom permitiendome desarrollar una SPA (Single page application), todo los productos son traidos de una base de datos Firebase (Firestore) para ser consumidos y mostrados en pantallas. Su construcción comienza por mobile first. Este proyecto seguirá en desarrollo mientras vaya aprendiendo nuevas tecnologías en el camino.
