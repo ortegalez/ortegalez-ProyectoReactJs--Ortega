@@ -1,9 +1,21 @@
-import React from 'react'
+import React from "react";
 
-const CartCointainer = () => {
+import ItemCartTotal from "../ItemCartTotal/ItemCartTotal";
+import ItemCartEmpty from "../ItemCartEmpty/ItemCartEmpty";
+import ItemCartList from "../ItemCartList/ItemCartList";
+
+import "../CartContainer/CartContainer.css";
+
+const CartContainer = () => {
   return (
-    <div>CartCointainer</div>
-  )
-}
+    <section className="cartContainer-section">
+      <div className="cartContainer-contenedor">
+        <ItemCartList />
+        <ItemCartEmpty />
+      </div>
+      <ItemCartTotal />
+    </section>
+  );
+};
 
-export default CartCointainer
+export default CartContainer;

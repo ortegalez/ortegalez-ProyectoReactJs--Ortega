@@ -1,17 +1,26 @@
-.carrito {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-    color: #ffffff;
+.shoppingCart {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 0.25rem;
+  border: 1px transparent rgba(230, 47, 47, 0);
+  border-radius: 0.5rem;
+  text-decoration: none;
 }
 
-.carrito img {
-    width: 1.5rem;
+.shoppingCart:hover {
+  background-color: #dc3545;
 }
 
-.carrito p {
-    font-weight: bold;
-    font-size: 1rem;
+.shoppingCart img {
+  width: 1.5rem;
+}
+
+.shoppingCart-text {
+  text-decoration: solid;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #ffffff;
 }

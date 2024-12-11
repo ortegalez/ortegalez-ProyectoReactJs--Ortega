@@ -1,0 +1,13 @@
+.itemDetail-contenedor {
+  background-color: red;
+  display: grid;
+  grid-template-areas:
+    "ItemDetail-img ItemDetail-description"
+    "ItemDetail-img ItemDetail-botones";
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+}
+
+.ItemDetail-img {
+  width: 500px;
+}

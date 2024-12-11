@@ -1,0 +1,13 @@
+.itemCart-total {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-around;
+  gap: 1rem;
+  border-radius: 0.5rem;
+  margin: 0.5rem;
+  background-color: #ffff;
+  height: min-content;
+}

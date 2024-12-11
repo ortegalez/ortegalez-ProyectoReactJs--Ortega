@@ -1,77 +1,52 @@
+import { useState } from "react";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import {
+  getFirestore,
+  getDocs,
+  collection,
+  where,
+  query,
+} from "firebase/firestore";
 
-import { useState } from 'react'
-import { useEffect } from 'react'
-import { gFetch } from '../../utils/gFetch'
-import { Link, useParams } from 'react-router-dom';
-import '../ItemListContainer/ItemListContainer.css'
+import Loader from "../Loader/Loader";
+import ItemList from "../ItemList/ItemList";
 
+import "../ItemListContainer/ItemListContainer.css";
 
-export const ItemListContainer = ({ greeting, subGreeting }) => {
-  
-  const [ productos, setProductos ] = useState([])
-  const [ loading, setLoading ] = useState(true)
-
-  const { idCategoria } = useParams()
-  // Uso este hook para capturar el parametro categoria cuando presion el boton de categoria
-  // console.log({idCategoria})  // Colocar la variable entre corchetes, cuando esta se llama igual que al contenido, esto sirve para ver lo que contiene
-
+export const ItemListContainer = () => {
+  const { idCategoria } = useParams();
+  const [productos, setProductos] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if(idCategoria) {
-      gFetch()
-        .then(res => {
-          setProductos(res.filter(producto => producto.categoria == idCategoria))
-        })
-        .catch(error => console.log(error))
-        .finally(() => setLoading(false))    
-   
-      } else {
-      gFetch()
-        .then(res => {
-          setProductos(res)
-        })
-        .catch(error => console.log(error))
-        .finally(() => setLoading(false))    
-    }
-  }, [idCategoria])
+    const db = getFirestore();
+    const queryCollections = collection(db, "productos");
 
-  // Coloco el parametro para que no se vuelva a renderizar
-  
-  // console.log(productos)
+    const queryFilter = idCategoria
+      ? query(queryCollections, where("categoria", "==", idCategoria))
+      : queryCollections;
 
-  return (
-    // <div className='greeting'>
-    
-        loading 
-        ? 
-          <h2 className='cargando'>Cargando productos...</h2>
-        :
-      <div className='listContainer'>
-        { productos.map(producto => <div key={producto.id} className='card w-25 mt-2 m-2'>
-                                      <div className='card-header'>
-                                       <h4>
-                                        {producto.nombre}
-                                       </h4>
-                                      </div>
-                                      <div className='card-body'>
-                                        <img src={producto.imagen} alt='foto' className='w-100'/>  
-                                        <h5>
-                                          Categoria: {producto.categoria}<br/>
-                                        </h5>
-                                        <h5> 
-                                          Precio: ${producto.precio}<br/>
-                                        </h5>
-                                      </div>
-                                      <div className='card-footer'>
-                                      <Link to={`/detalle/${producto.id}`}>
-                                        <button className='btn btn-outline-primary w-100' >Detalle</button>
-                                      </Link>
-                                      </div>
-                                    </div>) }
+    getDocs(queryFilter)
+      .then((resp) => {
+        setProductos(
+          resp.docs.map((producto) => ({
+            id: producto.id,
+            ...producto.data(),
+          }))
+        );
+      })
+      .catch((err) => console.error(err))
+      .finally(() => setLoading(false));
+  }, [idCategoria]);
+
+  return loading ? (
+    <Loader />
+  ) : (
+    <div className="listContainer">
+      <ItemList productos={productos} />
     </div>
- 
- 
- )
-}
+  );
+};
 
-export default ItemListContainer
+export default ItemListContainer;

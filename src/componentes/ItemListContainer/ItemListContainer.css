@@ -1,25 +1,43 @@
 .listContainer {
-    display: flex;
-    flex-direction: row;
-    justify-Content: center;
-    flex-Wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  background-color: #dadada;
+}
+
+.itemList {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  min-height: 100vh;
+}
+
+h3,
+h4 {
+  text-align: center;
+}
+
+.loader {
+  height: 100vh;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader-spinner {
+  width: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(farthest-side, #f03355 95%, #0000) 50% 1px/12px
+      12px no-repeat,
+    radial-gradient(farthest-side, #0000 calc(100% - 14px), #ccc 0);
+  animation: s9 2s infinite linear;
+}
+@keyframes s9 {
+  to {
+    transform: rotate(1turn);
   }
-
-.greeting {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 75vh;
-}
-
-.cargando {
-    height: 85vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-h3, h4 {
-    text-align: center;
 }

@@ -1,13 +1,16 @@
-import imagen from '../../../images/shopping-cart.svg'
-import '../CartWidget/CartWidget.css'
+import shoppingCart from "../../../images/shopping-cart.svg";
+import { useCartContext } from "../../context/CartContext";
+import "../CartWidget/CartWidget.css";
 
 const CartWidget = () => {
-  return (
-    <div className='carrito'>
-        <img src={imagen} alt="carrito"/>
-        <p>0</p>
-    </div>
-  )
-}
+  const { cartListCount } = useCartContext();
 
-export default CartWidget
+  return (
+    <div className="shoppingCart m-1">
+      <img src={shoppingCart} alt="Cart-icon" />
+      <p className="shoppingCart-text">{cartListCount()}</p>
+    </div>
+  );
+};
+
+export default CartWidget;
